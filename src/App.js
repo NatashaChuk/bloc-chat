@@ -32,6 +32,7 @@ class App extends Component {
         activeRoom: room.name,
         activeRoomId: room.key,
       });
+      console.log(room);
     }
     
 
