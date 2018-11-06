@@ -49,7 +49,7 @@ class App extends Component {
           {this.state.activeRoom}
         </div>
 
-        <div id="message">
+        <div id="messages">
         <MessageList firebase={firebase}
          roomId={this.state.activeRoomId} />
         </div>

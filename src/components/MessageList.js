@@ -14,7 +14,7 @@ class MessageList extends Component {
 	}
 
 	componentDidMount() {
-		this.messagesRef.on("child_added", snapshot => {
+		this.messagesRef.orderByChild('roomId').on("child_added", snapshot => {
 			const message = snapshot.val();
 			message.key = snapshot.key;
 			this.setState({messages: this.state.messages.concat(message)});
@@ -23,15 +23,20 @@ class MessageList extends Component {
 
 	
 	render() {
+
 		return(
 			<section className="message-list">
-				{this.state.messages.filter(message => message.roomId === this.props.roomId ).map( message =>
-			  		  <div id="message" key={message.key}>
+			  <h3>Chatting in RoomID: {this.props.roomId}</h3>
+			  	{this.state.messages.filter(message => message.roomId === this.props.roomId )
+			  		.map( message =>
+						  <div id="message" key={message.key}>
+						  <span>RoomID for Message: {message.roomId}</span>
 			  			 <div>{message.content}</div>
 			  			 <div>{message.sentAt}</div>
 			  		  </div>
 			  		)
 			  	}
+			  
 			 </section>
 			);
 		}

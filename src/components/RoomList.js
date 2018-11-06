@@ -43,8 +43,8 @@ render() {
 	return (
 		<section className="room-list">
 		  	{
-				this.state.rooms.map( (room, index) => 
-			 	 <div key={index} onClick={(e) => 
+				this.state.rooms.map( (room) => 
+			 	 <div key={room.key} onClick={(e) => 
 			 	 	{this.props.handleRoomClick(room)}}> {room.name} </div>
 			 	 
 		 		)
