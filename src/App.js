@@ -24,7 +24,7 @@ class App extends Component {
     this.state = {
       activeRoom: "",
       activeRoomId: "",
-      user: null,
+      user: "",
       };
 
       this.handleRoomClick = this.handleRoomClick.bind(this);

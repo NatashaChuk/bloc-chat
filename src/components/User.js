@@ -36,7 +36,6 @@ class User extends Component {
 
 
 
-
 	render() {
 		return(
 			<div id="sign-in">
