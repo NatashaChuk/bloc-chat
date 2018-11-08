@@ -27,12 +27,10 @@ class MessageList extends Component {
 
 		return(
 			<section className="message-list">
-			  <h3>Chatting in RoomID: {this.props.roomId}</h3>
-			  
+			 			  
 			    {this.state.messages.filter(message => message.roomId === this.props.roomId ).map( message =>
 				  <div id="message" key={message.key}>
-				    <span>RoomID for Message: {message.roomId}</span>
-			  	    <div>{message.content}</div>
+				    <div>{message.content}</div>
 			  	    <div>{message.sentAt}</div>
 			  	 </div>
 			  	)

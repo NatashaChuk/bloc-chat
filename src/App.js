@@ -3,6 +3,7 @@ import './App.css';
 import  * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList';
+import User from './components/User';
 
 
 // Initialize Firebase
@@ -22,10 +23,17 @@ class App extends Component {
     super(props);
     this.state = {
       activeRoom: "",
-      activeRoomId: ""
-      }
+      activeRoomId: "",
+      user: null,
+      };
+
       this.handleRoomClick = this.handleRoomClick.bind(this);
+      this.setUser = this.setUser.bind(this);
     }
+
+    setUser(user) {
+      this.setState({user : user});
+    };
 
     handleRoomClick(room) {
       this.setState({
@@ -38,26 +46,33 @@ class App extends Component {
 
   
   render() {
-    return (
+
+     return (
       <div className="App">
         <header>
           <h1>Bloc Chat</h1>
         </header>
-        <RoomList firebase={firebase}
-          handleRoomClick={this.handleRoomClick} />
+         
 
-        <div id="active-room">
-          {this.state.activeRoom}
+        <div id="rooms">
+          <RoomList firebase={firebase} handleRoomClick={this.handleRoomClick} />
         </div>
 
+        <div id="user">
+          <User firebase={firebase} setUser = {this.setUser} user = {this.state.user} />
+        </div>
+
+         <div id="active-room">
+          <h3> Chatting in: {this.state.activeRoom} </h3>
+         </div>
+
         <div id="messages">
-        <MessageList firebase={firebase}
-         roomId={this.state.activeRoomId} />
+          <MessageList firebase={firebase} roomId={this.state.activeRoomId} user={this.state.user} />
         </div>
 
       </div>
     );
   }
-}
+};
 
 export default App;
