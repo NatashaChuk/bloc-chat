@@ -38,15 +38,33 @@ class RoomList extends Component {
 		});
 	};
 
+	deleteRoom(room) {
+
+		const roomKey = this.props.activeRoomId;
+		this.roomsRef.child(room.key).remove();
+
+		this.setState({
+			rooms: this.state.rooms.filter(room => room.key !== roomKey)
+		});
+	}
+
 
 render() {
 	return (
 		<section className="room-list">
 		  	{
 				this.state.rooms.map( (room) => 
-			 	 <div key={room.key} onClick={(e) => 
+			 	 <div key={room.key}>
+			 	  <div onClick={(e) => 
 			 	 	{this.props.handleRoomClick(room)}}> {room.name} </div>
 			 	 
+			 	 	<button 
+			 	 	  type="submit"
+			 	 	  value="Delete Room"
+			 	 	  onClick={this.deleteRoom}>
+			 	 	  Delete Room
+			 	 	</button>
+		  		</div>
 		 		)
 		 	}
 		 
@@ -61,6 +79,7 @@ render() {
 		  	 <input type="submit" />
 		  </form>
 		  </div>	
+
 		</section>
 		);
  	}
